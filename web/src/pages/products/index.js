@@ -1,10 +1,11 @@
 import Header from "../../components/header";
+import ProductsList from "../../components/productsList/productsList";
 
 function Products() {
   return (
     <div>
       <Header />
-      <h1>Products</h1>
+      <ProductsList />
     </div>
   );  
 }
