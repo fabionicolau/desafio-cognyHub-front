@@ -1,5 +1,5 @@
-const getLocalStorage = () => {
-  const currentCart = JSON.parse(localStorage.getItem('cart'))
+const getLocalStorage = (item) => {
+  const currentCart = JSON.parse(localStorage.getItem(item))
   if (currentCart) {
     return currentCart
   }

@@ -1,5 +1,5 @@
 import Header from "../../components/header";
-import ProductsList from "../../components/productsList/productsList";
+import ProductsList from "../../components/productsList";
 
 function Products() {
   return (

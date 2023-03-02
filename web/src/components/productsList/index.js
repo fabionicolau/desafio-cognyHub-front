@@ -16,8 +16,7 @@ function ProductsList() {
   }, [])
 
   const checkIfTheProductAlreadyExistsInTheCart = (productId) => {
-    const currentCart = getLocalStorage()
-    console.log(currentCart);
+    const currentCart = getLocalStorage('cart')
     if (currentCart.length > 0) {
       const productAlreadyExists = currentCart.find((item) => item.id === productId)
       if (productAlreadyExists) {
@@ -31,7 +30,7 @@ function ProductsList() {
 
   const addProductToCart = (productID) => {
     if (!checkIfTheProductAlreadyExistsInTheCart(productID)) return false
-    const currentCart = getLocalStorage()
+    const currentCart = getLocalStorage('cart')
 
     const product = products.find((product) =>  product.id === productID)
     const addProduct = {

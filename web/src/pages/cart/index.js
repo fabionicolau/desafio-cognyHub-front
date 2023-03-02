@@ -1,11 +1,13 @@
 import Header from "../../components/header";
+import CartList from "../../components/cartList";
+import CartProvider from "../../context/provider";
 
 function Cart() {
   return (
-    <div>
+    <CartProvider>
       <Header />
-      <h1>Cart</h1>
-    </div>
+      <CartList />
+    </CartProvider>
   );  
 }
 
