@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import getLocalStorage from "../../utils/getLocalStorage";
 import CartItems from "../../components/cartItems";
 import CartContext from "../../context/context";
+import './style.css'
 
 function CartList() {
   const [isFinished, setIsFinished] = useState(false);
@@ -27,26 +28,34 @@ function CartList() {
   }
 
   return (
-    <div>
-      <section>
-        {currentCart.length > 0 ? (
-          currentCart.map((product) => {
-            return (
-              <div key={product.id}>
-                <CartItems product={product} />
-              </div>
-            );
-          })
-        ) : <p>Carrinho vazio</p>}
-      </section>
-      <section>
+    <div className="cart-container">
+      {currentCart.length > 0 ? (
+        <table className="table-container">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Produto</th>
+              <th>Quantidade</th>
+              <th>Valor</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentCart.map((product) => {
+              return (
+                  <CartItems key={product.id} product={product} />
+              );
+            })}
+          </tbody>
+        </table>
+            ) : <p className="empty-cart">Carrinho vazio</p>}
+      <section className="checkout-container">
         <button 
           type="button"
           onClick={checkout}
         >
           Finalizar Pedido
         </button>
-        <p>Total: {total.toFixed(2).replace('.', ',')}</p>
+        <p><span>Total:</span>{`R$ ${total.toFixed(2).replace('.', ',')}`}</p>
       </section>
     </div>
   );

@@ -26,20 +26,22 @@ function CartItems({ product }) {
   }, [inputAmount, id, subTotal])
 
   return (
-    <div key={product.id}>
-      <img src={product.imagem} alt="foto do calçado" width='250px' height='250px' />
-      <p>{product.descrição}</p>
+    <tr>
+      <td><img src={product.imagem} alt="foto do calçado" /></td>
+      <td>{product.descrição}</td>
+      <td>
       <input 
-      type="number" 
-      min='1'
-      value={inputAmount}
-      onChange={(event) => {
-        setInputAmount(event.target.value)
-        setAmount(event.target.value)
-      }}  
-      />
-      <p>{subTotal.toFixed(2).replace('.', ',')}</p>
-    </div>
+        type="number" 
+        min='1'
+        value={inputAmount}
+        onChange={(event) => {
+          setInputAmount(event.target.value)
+          setAmount(event.target.value)
+        }}  
+        />
+      </td>
+      <td>{`R$ ${subTotal.toFixed(2).replace('.', ',')}`}</td>
+    </tr>
   )
 }
 
