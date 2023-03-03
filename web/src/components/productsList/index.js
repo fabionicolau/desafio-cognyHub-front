@@ -2,6 +2,7 @@ import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../../database/firebaseConfig'
 import { useState, useEffect } from 'react'
 import getLocalStorage from '../../utils/getLocalStorage.js'
+import './style.css'
 
 function ProductsList() {
   const [products, setProducts] = useState([]);
@@ -49,13 +50,14 @@ function ProductsList() {
   }
 
   return (
-    <div>
+    <div className='products-container'>
       {products.sort((a, b) => a.id - b.id).map((product) => 
-        <div key={product.id}>
-          <img src={product.imagem} alt="foto do calçado" width='250px' height='250px' />
+        <div className='eachProduct' key={product.id}>
+          <img src={product.imagem} alt="foto do calçado" />
           <p>{product.descrição}</p>
-          <p>{product.preço}</p>
+          <p className='teste'>{`R$ ${product.preço}`}</p>
          <button
+          className='add-button'
           type='button'
           onClick={() => addProductToCart(product.id)}
          >
