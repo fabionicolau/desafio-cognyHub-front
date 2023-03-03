@@ -1,11 +1,14 @@
+import { useState, useEffect, useContext } from 'react'
 import { collection, getDocs } from 'firebase/firestore'
 import { db } from '../../database/firebaseConfig'
-import { useState, useEffect } from 'react'
 import getLocalStorage from '../../utils/getLocalStorage.js'
+import CartContext from "../../context/context";
 import './style.css'
 
 function ProductsList() {
   const [products, setProducts] = useState([]);
+
+  const { hasCartBeenChanged, setHasCartBeenChanged } = useContext(CartContext);
   
   useEffect(() => {
     const getProductsList = async () => {
@@ -47,6 +50,9 @@ function ProductsList() {
     } else {
       localStorage.setItem('cart', JSON.stringify([addProduct]))
     }
+    
+    hasCartBeenChanged === true ? setHasCartBeenChanged(false) : setHasCartBeenChanged(true)
+    
   }
 
   return (

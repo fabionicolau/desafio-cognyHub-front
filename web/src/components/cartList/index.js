@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import getLocalStorage from "../../utils/getLocalStorage";
 import CartItems from "../../components/cartItems";
 import CartContext from "../../context/context";
 import './style.css'
 
 function CartList() {
-  const [isFinished, setIsFinished] = useState(false);
-  const { total, amount, setTotal } = useContext(CartContext);
+  const { total, amount, setTotal,
+     isFinished, setIsFinished } = useContext(CartContext);
   const currentCart = getLocalStorage("cart");
 
   useEffect(() => {
@@ -20,11 +20,9 @@ function CartList() {
 
 
   const checkout = () => {
-    // const finalCart = getLocalStorage("cart");
     localStorage.clear();
     setIsFinished(true);
     alert('Compra finalizada com sucesso!')
-    // logica para salvar no firebase
   }
 
   return (
