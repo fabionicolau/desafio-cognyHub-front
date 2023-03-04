@@ -1,4 +1,6 @@
 import { useContext, useEffect } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../database/firebaseConfig";
 import getLocalStorage from "../../utils/getLocalStorage";
 import CartItems from "../../components/cartItems";
 import CartContext from "../../context/context";
@@ -19,7 +21,15 @@ function CartList() {
   }, [setTotal, amount, isFinished]);
 
 
-  const checkout = () => {
+  const addToDataBase = async () => {
+    const currentCart = getLocalStorage("cart");
+    const idList = currentCart.map(({ id }) => id)
+    const collectionRef = collection(db, 'vendas');
+    await addDoc(collectionRef, { idList, total });
+  }
+
+  const checkout = async () => {
+    await addToDataBase();
     localStorage.clear();
     setIsFinished(true);
     alert('Compra finalizada com sucesso!')
