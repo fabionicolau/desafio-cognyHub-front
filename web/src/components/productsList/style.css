@@ -11,7 +11,7 @@
   align-items: center;
   margin: auto;
   margin-top: 10px;
-  width: 420px;
+  width: 320px;
   height: 90vh;
   gap: 15px;
 }
@@ -67,6 +67,7 @@
 
 @media (min-width: 1000px) {
   .products-container {
+    margin-top: 15px;
     width: 1045px;
   }
 
